@@ -118,7 +118,7 @@ class MainViewModel (application: Application) : BaseViewModel(application){
                 mmkvUf.decodeString(Constant.IP_INFORMATION),
                 object : TypeToken<UfIpBean?>() {}.type
             )
-            return ptIpBean.country_code == "CN"
+            return ptIpBean.country_code == "IR"
         }
     }
 
