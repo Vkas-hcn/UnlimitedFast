@@ -1,0 +1,80 @@
+{
+  "uf_show_num": 300,
+  "uf_click_num": 5,
+  "uf_open": [
+    {
+      "uf_type": "open",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/3419835294",
+      "uf_weight": 1
+    },
+    {
+      "uf_type": "open",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/8691691433",
+      "uf_weight": 2
+    },
+    {
+      "uf_type": "screen",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/3419835294XX",
+      "uf_weight": 3
+    }
+  ],
+  "uf_back": [
+    {
+      "uf_type": "primitive",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/2247696110",
+      "uf_weight": 2
+    }
+  ],
+  "uf_vpn": [
+    {
+      "uf_type": "primitive",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/1044960115",
+      "uf_weight": 1
+    },
+    {
+      "uf_type": "primitive",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/2247696110XX",
+      "uf_weight": 3
+    },
+    {
+      "uf_type": "primitive",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/2247696110",
+      "uf_weight": 2
+    }
+  ],
+  "uf_result": [
+    {
+      "uf_type": "primitive",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/2247696110",
+      "uf_weight": 2
+    }
+  ],
+  "uf_connect": [
+    {
+      "uf_type": "screen",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/8691691433",
+      "uf_weight": 2
+    },
+    {
+      "uf_type": "screen",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/1033173712XX",
+      "uf_weight": 3
+    },
+    {
+      "uf_type": "screen",
+      "uf_platform": "admob",
+      "uf_id": "ca-app-pub-3940256099942544/1033173712",
+      "uf_weight": 1
+    }
+  ]
+}

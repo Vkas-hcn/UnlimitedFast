@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="presenter"
+            type="com.vkas.unlimitedfast.ufui.result.ResultActivity.UfClick" />
+
+        <variable
+            name="resultAdEl"
+            type="Boolean"
+            android:value="false" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <include
+            android:id="@+id/result_title"
+            layout="@layout/layout_toolbar_uf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lin_connect"
+            android:layout_width="328dp"
+            android:layout_height="217dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="@mipmap/bg_result"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_title">
+
+            <TextView
+                android:id="@+id/tv_connected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:text="@string/connection_succeed"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_timer_uf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="14dp"
+                android:gravity="center"
+                android:text="@string/_00_00_00"
+                android:textColor="#FFFFFFFF"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_connected" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lin_service"
+                android:layout_width="155dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@mipmap/bg_main_service"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_timer_uf">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/img_country"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="12dp" />
+
+                    <TextView
+                        android:id="@+id/txt_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="12dp"
+                        android:gravity="start|center_vertical"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <FrameLayout
+                android:id="@+id/uf_ad_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_connect"
+                android:visibility="@{resultAdEl ? View.VISIBLE : View.GONE}" />
+
+            <ImageView
+                android:id="@+id/img_uf_ad_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_result_pl"
+                android:scaleType="fitXY"
+                android:visibility="@{resultAdEl ? View.GONE : View.VISIBLE}" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
