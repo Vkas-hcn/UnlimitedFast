@@ -10,7 +10,7 @@
             type="com.vkas.unlimitedfast.ufui.result.ResultActivity.UfClick" />
 
         <variable
-            name="resultAdEl"
+            name="resultAdUf"
             type="Boolean"
             android:value="false" />
     </data>
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_connect"
-                android:visibility="@{resultAdEl ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{resultAdUf ? View.VISIBLE : View.GONE}" />
 
             <ImageView
                 android:id="@+id/img_uf_ad_frame"
@@ -134,7 +134,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_result_pl"
                 android:scaleType="fitXY"
-                android:visibility="@{resultAdEl ? View.GONE : View.VISIBLE}" />
+                android:visibility="@{resultAdUf ? View.GONE : View.VISIBLE}" />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

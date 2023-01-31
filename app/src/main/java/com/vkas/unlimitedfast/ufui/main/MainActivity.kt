@@ -26,6 +26,10 @@ import com.vkas.unlimitedfast.R
 import com.vkas.unlimitedfast.databinding.ActivityMainBinding
 import com.vkas.unlimitedfast.enevt.Constant
 import com.vkas.unlimitedfast.enevt.Constant.logTagUf
+import com.vkas.unlimitedfast.ufad.UfLoadBackAd
+import com.vkas.unlimitedfast.ufad.UfLoadConnectAd
+import com.vkas.unlimitedfast.ufad.UfLoadHomeAd
+import com.vkas.unlimitedfast.ufad.UfLoadResultAd
 import com.vkas.unlimitedfast.ufapp.App
 import com.vkas.unlimitedfast.ufapp.App.Companion.mmkvUf
 import com.vkas.unlimitedfast.ufbase.BaseActivity
@@ -144,21 +148,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             )
             setFastInformation(currentServerData)
         }
-//        UfLoadVpnAd.getInstance().whetherToShowUf = false
+        UfLoadHomeAd.getInstance().whetherToShowUf = false
         initHomeAd()
     }
 
     private fun initHomeAd() {
-//        jobNativeAdsUf = lifecycleScope.launch {
-//            while (isActive) {
-//                UfLoadVpnAd.getInstance().setDisplayHomeNativeAdUf(this@MainActivity, binding)
-//                if (UfLoadVpnAd.getInstance().whetherToShowUf) {
-//                    jobNativeAdsUf?.cancel()
-//                    jobNativeAdsUf = null
-//                }
-//                delay(1000L)
-//            }
-//        }
+        jobNativeAdsUf = lifecycleScope.launch {
+            while (isActive) {
+                UfLoadHomeAd.getInstance().setDisplayHomeNativeAdUf(this@MainActivity, binding)
+                if (UfLoadHomeAd.getInstance().whetherToShowUf) {
+                    jobNativeAdsUf?.cancel()
+                    jobNativeAdsUf = null
+                }
+                delay(1000L)
+            }
+        }
     }
 
     override fun initViewObservable() {
@@ -263,7 +267,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             } else {
                 bundle.putBoolean(Constant.WHETHER_UF_CONNECTED, false)
             }
-//            UfLoadBackAd.getInstance().advertisementLoadingUf(this@MainActivity)
+            UfLoadBackAd.getInstance().advertisementLoadingUf(this@MainActivity)
             val serviceData = mmkvUf.decodeString("currentServerData", "").toString()
             bundle.putString(Constant.CURRENT_UF_SERVICE, serviceData)
             startActivity(VpnListActivity::class.java, bundle)
@@ -306,36 +310,36 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         changeOfVpnStatus()
         jobStartUf = lifecycleScope.launch {
             App.isAppOpenSameDayUf()
-//            if (isThresholdReached()) {
-//                KLog.d(logTagUf, "广告达到上线")
+            if (isThresholdReached()) {
+                KLog.d(logTagUf, "广告达到上线")
                 delay(1500)
                 connectOrDisconnectUf(false)
                 return@launch
-//            }
-//            UfLoadConnectAd.getInstance().advertisementLoadingUf(this@MainActivity)
-//            UfLoadResultAd.getInstance().advertisementLoadingUf(this@MainActivity)
+            }
+            UfLoadConnectAd.getInstance().advertisementLoadingUf(this@MainActivity)
+            UfLoadResultAd.getInstance().advertisementLoadingUf(this@MainActivity)
 
-//            try {
-//                withTimeout(10000L) {
-//                    delay(1500L)
-//                    KLog.e(logTagUf, "jobStartUf?.isActive=${jobStartUf?.isActive}")
-//                    while (jobStartUf?.isActive == true) {
-//                        val showState =
-//                            UfLoadConnectAd.getInstance()
-//                                .displayConnectAdvertisementUf(this@MainActivity)
-//                        if (showState) {
-//                            jobStartUf?.cancel()
-//                            jobStartUf = null
-//                        }
-//                        delay(1000L)
-//                    }
-//                }
-//            } catch (e: TimeoutCancellationException) {
-//                KLog.d(logTagUf, "connect---插屏超时")
-//                if (jobStartUf != null) {
-//                    connectOrDisconnectUf(false)
-//                }
-//            }
+            try {
+                withTimeout(10000L) {
+                    delay(1500L)
+                    KLog.e(logTagUf, "jobStartUf?.isActive=${jobStartUf?.isActive}")
+                    while (jobStartUf?.isActive == true) {
+                        val showState =
+                            UfLoadConnectAd.getInstance()
+                                .displayConnectAdvertisementUf(this@MainActivity)
+                        if (showState) {
+                            jobStartUf?.cancel()
+                            jobStartUf = null
+                        }
+                        delay(1000L)
+                    }
+                }
+            } catch (e: TimeoutCancellationException) {
+                KLog.d(logTagUf, "connect---插屏超时")
+                if (jobStartUf != null) {
+                    connectOrDisconnectUf(false)
+                }
+            }
         }
     }
 
@@ -478,18 +482,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             if (lifecycle.currentState != Lifecycle.State.RESUMED) {
                 return@launch
             }
-//            if (App.nativeAdRefreshUf) {
-//                UfLoadVpnAd.getInstance().whetherToShowUf = false
-//                if (UfLoadVpnAd.getInstance().appAdDataUf != null) {
-//                    KLog.d(logTagUf, "onResume------>1")
-//                    UfLoadVpnAd.getInstance().setDisplayHomeNativeAdUf(this@MainActivity, binding)
-//                } else {
-//                    binding.vpnAdUf = false
-//                    KLog.d(logTagUf, "onResume------>2")
-//                    UfLoadVpnAd.getInstance().advertisementLoadingUf(this@MainActivity)
-//                    initHomeAd()
-//                }
-//            }
+            if (App.nativeAdRefreshUf) {
+                UfLoadHomeAd.getInstance().whetherToShowUf = false
+                if (UfLoadHomeAd.getInstance().appAdDataUf != null) {
+                    KLog.d(logTagUf, "onResume------>1")
+                    UfLoadHomeAd.getInstance().setDisplayHomeNativeAdUf(this@MainActivity, binding)
+                } else {
+                    binding.vpnAdUf = false
+                    KLog.d(logTagUf, "onResume------>2")
+                    UfLoadHomeAd.getInstance().advertisementLoadingUf(this@MainActivity)
+                    initHomeAd()
+                }
+            }
         }
     }
 

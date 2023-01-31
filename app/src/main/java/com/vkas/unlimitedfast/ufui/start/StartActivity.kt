@@ -15,6 +15,7 @@ import com.vkas.unlimitedfast.R
 import com.vkas.unlimitedfast.databinding.ActivityStartBinding
 import com.vkas.unlimitedfast.enevt.Constant
 import com.vkas.unlimitedfast.enevt.Constant.logTagUf
+import com.vkas.unlimitedfast.ufad.*
 import com.vkas.unlimitedfast.ufapp.App
 import com.vkas.unlimitedfast.ufbase.BaseActivity
 import com.vkas.unlimitedfast.ufbase.BaseViewModel
@@ -130,61 +131,61 @@ class StartActivity: BaseActivity<ActivityStartBinding, BaseViewModel>(),
      * 加载广告
      */
     private fun loadAdvertisement() {
-//        // 开屏
-//        UfLoadOpenAd.getInstance().adIndexUf = 0
-//        UfLoadOpenAd.getInstance().advertisementLoadingUf(this)
-//        rotationDisplayOpeningAdUf()
-//        // 首页原生
-//        UfLoadVpnAd.getInstance().adIndexUf = 0
-//        UfLoadVpnAd.getInstance().advertisementLoadingUf(this)
-//        // 结果页原生
-//        UfLoadResultAd.getInstance().adIndexUf = 0
-//        UfLoadResultAd.getInstance().advertisementLoadingUf(this)
-//        // 连接插屏
-//        UfLoadConnectAd.getInstance().adIndexUf = 0
-//        UfLoadConnectAd.getInstance().advertisementLoadingUf(this)
-//        // 服务器页原生
-//        UfLoadBackAd.getInstance().adIndexUf = 0
-//        UfLoadBackAd.getInstance().advertisementLoadingUf(this)
+        // 开屏
+        UfLoadOpenAd.getInstance().adIndexUf = 0
+        UfLoadOpenAd.getInstance().advertisementLoadingUf(this)
+        rotationDisplayOpeningAdUf()
+        // 首页原生
+        UfLoadHomeAd.getInstance().adIndexUf = 0
+        UfLoadHomeAd.getInstance().advertisementLoadingUf(this)
+        // 结果页原生
+        UfLoadResultAd.getInstance().adIndexUf = 0
+        UfLoadResultAd.getInstance().advertisementLoadingUf(this)
+        // 连接插屏
+        UfLoadConnectAd.getInstance().adIndexUf = 0
+        UfLoadConnectAd.getInstance().advertisementLoadingUf(this)
+        // 服务器页插屏
+        UfLoadBackAd.getInstance().adIndexUf = 0
+        UfLoadBackAd.getInstance().advertisementLoadingUf(this)
     }
     /**
      * 轮训展示开屏广告
      */
     private fun rotationDisplayOpeningAdUf() {
-//        jobOpenAdsUf = lifecycleScope.launch {
-//            try {
-//                withTimeout(8000L) {
-//                    delay(1000L)
-//                    while (isActive) {
-//                        val showState = UfLoadOpenAd.getInstance()
-//                            .displayOpenAdvertisementUf(this@StartActivity)
-//                        if (showState) {
-//                            jobOpenAdsUf?.cancel()
-//                            jobOpenAdsUf =null
-//                        }
-//                        delay(1000L)
-//                    }
-//                }
-//            } catch (e: TimeoutCancellationException) {
-//                KLog.e("TimeoutCancellationException I'm sleeping $e")
-//                jumpPage()
-//            }
-//        }
+        jobOpenAdsUf = lifecycleScope.launch {
+            try {
+                withTimeout(8000L) {
+                    delay(1000L)
+                    while (isActive) {
+                        val showState = UfLoadOpenAd.getInstance()
+                            .displayOpenAdvertisementUf(this@StartActivity)
+                        if (showState) {
+                            jobOpenAdsUf?.cancel()
+                            jobOpenAdsUf =null
+                        }
+                        delay(1000L)
+                    }
+                }
+            } catch (e: TimeoutCancellationException) {
+                KLog.e("TimeoutCancellationException I'm sleeping $e")
+                jumpPage()
+            }
+        }
     }
     /**
      * 预加载广告
      */
     private fun preloadedAdvertisement() {
         App.isAppOpenSameDayUf()
-//        if (isThresholdReached()) {
-//            KLog.d(logTagUf, "广告达到上线")
+        if (isThresholdReached()) {
+            KLog.d(logTagUf, "广告达到上线")
             lifecycleScope.launch {
                 delay(2000L)
                 liveJumpHomePage.postValue(true)
             }
-//        } else {
-//            loadAdvertisement()
-//        }
+        } else {
+            loadAdvertisement()
+        }
     }
     override fun onHorizontalProgressStart(view: View?) {
     }

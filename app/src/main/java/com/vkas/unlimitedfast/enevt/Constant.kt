@@ -40,6 +40,8 @@ object Constant {
     const val WHETHER_UF_CONNECTED="whetherUfConnected"
     // 当前服务器
     const val CURRENT_UF_SERVICE="currentUfService"
+    // back插屏广告展示
+    const val PLUG_UF_BACK_AD_SHOW="plugUfBackAdShow"
     // connect插屏广告展示
     const val PLUG_UF_ADVERTISEMENT_SHOW="plugUfAdvertisementShow"
     // Faster server

@@ -11,6 +11,7 @@ import com.vkas.unlimitedfast.R
 import com.vkas.unlimitedfast.databinding.ActivityResultUfBinding
 import com.vkas.unlimitedfast.databinding.ActivityStartBinding
 import com.vkas.unlimitedfast.enevt.Constant
+import com.vkas.unlimitedfast.ufad.UfLoadResultAd
 import com.vkas.unlimitedfast.ufapp.App
 import com.vkas.unlimitedfast.ufapp.App.Companion.mmkvUf
 import com.vkas.unlimitedfast.ufbase.BaseActivity
@@ -73,7 +74,7 @@ class ResultActivity: BaseActivity<ActivityResultUfBinding, BaseViewModel>()  {
         }
         binding.imgCountry.setImageResource(UnLimitedUtils.getFlagThroughCountryUf(currentServerBeanUf.uf_country.toString()))
         binding.txtCountry.text = currentServerBeanUf.uf_country.toString()
-//        UfLoadResultAd.getInstance().whetherToShowUf =false
+        UfLoadResultAd.getInstance().whetherToShowUf =false
         initResultAds()
     }
 
@@ -82,33 +83,33 @@ class ResultActivity: BaseActivity<ActivityResultUfBinding, BaseViewModel>()  {
     }
 
     private fun initResultAds() {
-//        jobResultUf= lifecycleScope.launch {
-//            while (isActive) {
-//                UfLoadResultAd.getInstance().setDisplayResultNativeAd(this@ResultUfActivity,binding)
-//                if (UfLoadVpnAd.getInstance().whetherToShowUf) {
-//                    jobResultUf?.cancel()
-//                    jobResultUf = null
-//                }
-//                delay(1000L)
-//            }
-//        }
+        jobResultUf= lifecycleScope.launch {
+            while (isActive) {
+                UfLoadResultAd.getInstance().setDisplayResultNativeAd(this@ResultActivity,binding)
+                if (UfLoadResultAd.getInstance().whetherToShowUf) {
+                    jobResultUf?.cancel()
+                    jobResultUf = null
+                }
+                delay(1000L)
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
-//        lifecycleScope.launch {
-//            delay(300)
-//            if(lifecycle.currentState != Lifecycle.State.RESUMED){return@launch}
-//            if(App.nativeAdRefreshUf){
-//                UfLoadResultAd.getInstance().whetherToShowUf =false
-//                if(UfLoadResultAd.getInstance().appAdDataUf !=null){
-//                    UfLoadResultAd.getInstance().setDisplayResultNativeAd(this@ResultUfActivity,binding)
-//                }else{
-//                    UfLoadResultAd.getInstance().advertisementLoadingUf(this@ResultUfActivity)
-//                    initResultAds()
-//                }
-//            }
-//        }
+        lifecycleScope.launch {
+            delay(300)
+            if(lifecycle.currentState != Lifecycle.State.RESUMED){return@launch}
+            if(App.nativeAdRefreshUf){
+                UfLoadResultAd.getInstance().whetherToShowUf =false
+                if(UfLoadResultAd.getInstance().appAdDataUf !=null){
+                    UfLoadResultAd.getInstance().setDisplayResultNativeAd(this@ResultActivity,binding)
+                }else{
+                    UfLoadResultAd.getInstance().advertisementLoadingUf(this@ResultActivity)
+                    initResultAds()
+                }
+            }
+        }
     }
     /**
      * 显示计时器

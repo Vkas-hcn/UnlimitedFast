@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.reflect.TypeToken
@@ -15,12 +16,18 @@ import com.vkas.unlimitedfast.R
 import com.vkas.unlimitedfast.databinding.ActivityListUfBinding
 import com.vkas.unlimitedfast.databinding.ActivityStartBinding
 import com.vkas.unlimitedfast.enevt.Constant
+import com.vkas.unlimitedfast.enevt.Constant.logTagUf
+import com.vkas.unlimitedfast.ufad.UfLoadBackAd
+import com.vkas.unlimitedfast.ufapp.App
 import com.vkas.unlimitedfast.ufbase.BaseActivity
 import com.vkas.unlimitedfast.ufbase.BaseViewModel
 import com.vkas.unlimitedfast.ufbean.UfVpnBean
 import com.vkas.unlimitedfast.ufutils.KLog
+import com.vkas.unlimitedfast.ufutils.UnLimitedUtils
 import com.xuexiang.xutil.net.JsonUtil
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class VpnListActivity : BaseActivity<ActivityListUfBinding, VpnListViewModel>() {
     private lateinit var selectAdapter: VpnListAdapter
@@ -57,6 +64,7 @@ class VpnListActivity : BaseActivity<ActivityListUfBinding, VpnListViewModel>() 
 
     override fun initToolbar() {
         super.initToolbar()
+        liveEventBusReceive()
         binding.selectTitleUf.tvTitle.text = getString(R.string.locations)
         binding.selectTitleUf.tvRight.visibility = View.GONE
         binding.selectTitleUf.imgBack.setOnClickListener {
@@ -68,14 +76,21 @@ class VpnListActivity : BaseActivity<ActivityListUfBinding, VpnListViewModel>() 
         super.initData()
         initSelectRecyclerView()
         viewModel.getServerListData()
-//        UfLoadBackAd.getInstance().whetherToShowUf = false
+        UfLoadBackAd.getInstance().whetherToShowUf = false
     }
 
     override fun initViewObservable() {
         super.initViewObservable()
         getServerListData()
     }
-
+    private fun liveEventBusReceive() {
+        //插屏关闭后跳转
+        LiveEventBus
+            .get(Constant.PLUG_UF_BACK_AD_SHOW, Boolean::class.java)
+            .observeForever {
+                finish()
+            }
+    }
     private fun getServerListData() {
         viewModel.liveServerListData.observe(this, {
             echoServer(it)
@@ -140,7 +155,15 @@ class VpnListActivity : BaseActivity<ActivityListUfBinding, VpnListViewModel>() 
      * 返回主页
      */
     private fun returnToHomePage() {
-        finish()
+        App.isAppOpenSameDayUf()
+        if (UnLimitedUtils.isThresholdReached()) {
+            KLog.d(logTagUf, "广告达到上线")
+            finish()
+            return
+        }
+        UfLoadBackAd.getInstance().advertisementLoadingUf(this)
+        UfLoadBackAd.getInstance()
+                .displayBackAdvertisementUf(this@VpnListActivity)
     }
 
     /**
