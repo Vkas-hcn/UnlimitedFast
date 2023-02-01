@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#272F33</color>
+    <color name="colorPrimary">#272F34</color>
     <color name="colorAccent">#9D734D</color>
     <color name="colorPrimaryDark">#FF000000</color>
     <color name="hor_pro_bar">#FF6D00</color>
@@ -18,11 +18,11 @@
     <color name="divider">#E5E2FD</color>
     <color name="tv_check">#FFFFFFFF</color>
     <color name="tv_dis_check">#66FFFFFF</color>
-    <color name="tv_vpn_success">#FF4AD635</color>
-    <color name="tv_vpn_dis">#FFF0371D</color>
-    <color name="tv_ff_333333">#FF333333</color>
+    <color name="tv_vpn_success">#FF4AD636</color>
+    <color name="tv_vpn_dis">#FFF0372D</color>
+    <color name="tv_ff_333333">#FF333334</color>
 
-    <color name="tv_time_dis">#F6EB1F</color>
-    <color name="tv_time_connect">#4AF0C4</color>
+    <color name="tv_time_dis">#F6EB2F</color>
+    <color name="tv_time_connect">#4AF0C5</color>
 
 </resources>

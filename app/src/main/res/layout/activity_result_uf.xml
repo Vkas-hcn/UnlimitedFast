@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
                 android:text="@string/connection_succeed"
-                android:textColor="#FFFFFFFF"
+                android:textColor="#FAFFFFFF"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_marginEnd="14dp"
                 android:gravity="center"
                 android:text="@string/_00_00_00"
-                android:textColor="#FFFFFFFF"
+                android:textColor="#FAFFFFFF"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
                         android:layout_marginStart="7dp"
                         android:layout_marginEnd="12dp"
                         android:gravity="start|center_vertical"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="#FAFFFFFF"
                         android:textSize="12sp"/>
 
                 </LinearLayout>

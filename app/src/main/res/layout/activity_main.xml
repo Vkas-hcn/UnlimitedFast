@@ -98,7 +98,7 @@
                             android:layout_marginStart="7dp"
                             android:gravity="center_vertical"
                             android:text="United States "
-                            android:textColor="#FFFFFFFF"
+                            android:textColor="#FAFFFFFF"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -163,7 +163,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/the_connection_time"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="#FAFFFFFF"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +191,7 @@
                         android:gravity="center"
                         android:onClick="@{() ->presenter.linkService()}"
                         android:text="@string/connect"
-                        android:textColor="#FFFFFBF7"
+                        android:textColor="#FFFAF7"
                         android:textSize="18sp" />
                 </LinearLayout>
 

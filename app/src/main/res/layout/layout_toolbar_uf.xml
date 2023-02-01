@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#FFFFFE"
                     android:textSize="16sp" />
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:visibility="invisible"
-                    android:textColor="#FF353C2A"
+                    android:textColor="#353C29"
                     android:textSize="18sp"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>

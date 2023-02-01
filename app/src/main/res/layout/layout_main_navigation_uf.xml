@@ -59,7 +59,7 @@
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
                     android:text="@string/contact_us"
-                    android:textColor="#FF000000"
+                    android:textColor="#000100"
                     android:textSize="14sp" />
 
                 <TextView
@@ -74,7 +74,7 @@
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
                     android:text="@string/privacy_policy"
-                    android:textColor="#FF000000"
+                    android:textColor="#000100"
                     android:textSize="14sp" />
 
                 <TextView
@@ -87,7 +87,7 @@
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
                     android:text="@string/share"
-                    android:textColor="#FF000000"
+                    android:textColor="#000100"
                     android:textSize="14sp" />
 
             </LinearLayout>
