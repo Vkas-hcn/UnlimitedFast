@@ -98,6 +98,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             .observeForever {
                 binding.txtTimerUf.text = it
             }
+        LiveEventBus
+            .get(Constant.STOP_VPN_CONNECTION, Boolean::class.java)
+            .observeForever {
+                if (state.canStop) {
+                    performConnectionOperations =false
+                    Core.stopService()
+                }
+            }
+
         //更新服务器(未连接)
         LiveEventBus
             .get(Constant.NOT_CONNECTED_UF_RETURN, UfVpnBean::class.java)

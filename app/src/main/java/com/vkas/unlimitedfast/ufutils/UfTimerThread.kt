@@ -7,6 +7,9 @@ import java.text.DecimalFormat
 object UfTimerThread {
     private val job = Job()
     private val timerThread = CoroutineScope(job)
+    //连接倒计时
+    private val connectionCountdown = CoroutineScope(job)
+
     var skTime = 0
     var isStopThread =true
     /**
@@ -17,8 +20,13 @@ object UfTimerThread {
             while (isActive) {
                 skTime++
                 if (!isStopThread) {
-                    LiveEventBus.get<String>(Constant.TIMER_UF_DATA)
-                        .post(formatTime(skTime))
+                    if(skTime==10){
+                        LiveEventBus.get<Boolean>(Constant.STOP_VPN_CONNECTION)
+                            .post(true)
+                    }else{
+                        LiveEventBus.get<String>(Constant.TIMER_UF_DATA)
+                            .post(formatTime(skTime))
+                    }
                 }
                 delay(1000)
             }
@@ -51,5 +59,13 @@ object UfTimerThread {
         val mm: String = DecimalFormat("00").format(timerData % 3600 / 60)
         val ss: String = DecimalFormat("00").format(timerData % 60)
         return "$hh:$mm:$ss"
+    }
+    /**
+     * 五分钟倒计时
+     */
+    fun fiveMinuteCountdown(){
+        connectionCountdown.launch {
+
+        }
     }
 }

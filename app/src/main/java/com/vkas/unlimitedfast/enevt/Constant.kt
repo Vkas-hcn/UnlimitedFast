@@ -24,6 +24,8 @@ object Constant {
     const val OPEN_CLOSE_JUMP = "openCloseJump"
     //计时器数据
     const val TIMER_UF_DATA = "timerUfData"
+    //停止vpn连接
+    const val STOP_VPN_CONNECTION = "stopVpnConnection"
     // 最后时间
     const val LAST_TIME = "lastTime"
     //服务器信息
