@@ -215,6 +215,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             if (binding.vpnState != 1) {
                 connect.launch(null)
             }
+            if(binding.vpnState == 0){
+                UnLimitedUtils.getBuriedPointUf("unlimF_clickv")
+            }
         }
 
         fun clickService() {
@@ -303,6 +306,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         if (it) {
             ToastUtils.toast(R.string.no_permissions)
         } else {
+            UnLimitedUtils.getBuriedPointUf("unlimF_geta")
             if (isNetworkAvailable()) {
                 startVpn()
             } else {
@@ -372,6 +376,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             if (!isBackgroundClosed) {
                 viewModel.jumpConnectionResultsPage(true)
             }
+            UnLimitedUtils.getBuriedPointUf("unlimF_sv")
             Core.startService()
             true
         }
@@ -394,6 +399,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         if (performConnectionOperations && state != "Connected") {
             //vpn连接失败
             KLog.d(logTagUf, "vpn连接失败")
+            UnLimitedUtils.getBuriedPointUf("unlimF_vF")
             ToastUtils.toast(getString(R.string.connected_failed))
         }
         when (state) {
@@ -413,6 +419,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     private fun connectionServerSuccessful() {
         binding.vpnState = 2
         changeOfVpnStatus()
+        UnLimitedUtils.getBuriedPointUf("unlimF_vT")
     }
 
     /**
@@ -436,6 +443,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 binding.txtTimerUf.text = getString(R.string._00_00_00)
                 binding.txtTimerUf.setTextColor(getColor(R.color.tv_time_dis))
                 UfTimerThread.endTiming()
+                UnLimitedUtils.getBuriedPointConnectionTimeUf("unlimF_cn", mmkvUf.decodeInt(Constant.LAST_TIME_SECOND))
                 binding.lavViewUf.pauseAnimation()
                 binding.lavViewUf.visibility = View.GONE
             }

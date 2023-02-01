@@ -20,7 +20,7 @@ object UfTimerThread {
             while (isActive) {
                 skTime++
                 if (!isStopThread) {
-                    if(skTime==10){
+                    if(skTime==300){
                         LiveEventBus.get<Boolean>(Constant.STOP_VPN_CONNECTION)
                             .post(true)
                     }else{
@@ -46,10 +46,12 @@ object UfTimerThread {
      */
     fun endTiming(){
         MmkvUtils.set(Constant.LAST_TIME,formatTime(skTime))
+        MmkvUtils.set(Constant.LAST_TIME_SECOND,skTime)
         skTime = 0
         isStopThread =true
         LiveEventBus.get<String>(Constant.TIMER_UF_DATA)
             .post(formatTime(0))
+
     }
     /**
      * 设置时间格式

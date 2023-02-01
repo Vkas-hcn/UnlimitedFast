@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import com.github.shadowsocks.Core
 import com.google.gson.reflect.TypeToken
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.vkas.unlimitedfast.BR
@@ -50,6 +51,7 @@ class ResultActivity: BaseActivity<ActivityResultUfBinding, BaseViewModel>()  {
     override fun initToolbar() {
         super.initToolbar()
         displayTimer()
+        liveEventBusReceive()
         binding.presenter = UfClick()
         binding.resultTitle.tvTitle.text = if (isConnectionUf) {
             getString(R.string.vpn_connect)
@@ -63,7 +65,15 @@ class ResultActivity: BaseActivity<ActivityResultUfBinding, BaseViewModel>()  {
             finish()
         }
     }
-
+fun liveEventBusReceive(){
+    LiveEventBus
+        .get(Constant.STOP_VPN_CONNECTION, Boolean::class.java)
+        .observeForever {
+            isConnectionUf = true
+            binding.resultTitle.tvTitle.text = getString(R.string.vpn_disconnect)
+            binding.tvConnected.text = getString(R.string.disconnection_succeed)
+        }
+}
     override fun initData() {
         super.initData()
         if (isConnectionUf) {

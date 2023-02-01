@@ -1,8 +1,14 @@
 package com.vkas.unlimitedfast.ufutils
 
+import android.os.Bundle
+import androidx.core.os.bundleOf
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.google.gson.reflect.TypeToken
+import com.vkas.unlimitedfast.BuildConfig
 import com.vkas.unlimitedfast.R
 import com.vkas.unlimitedfast.enevt.Constant
+import com.vkas.unlimitedfast.enevt.Constant.logTagUf
 import com.vkas.unlimitedfast.ufapp.App.Companion.mmkvUf
 import com.vkas.unlimitedfast.ufbean.UfAdBean
 import com.vkas.unlimitedfast.ufbean.UfDetailBean
@@ -272,6 +278,38 @@ object UnLimitedUtils {
         } catch (var1: Exception) {
             MmkvUtils.set(Constant.IP_INFORMATION, "")
             KLog.e("state", "Exception==${var1.message}")
+        }
+    }
+
+    /**
+     * 埋点
+     */
+    fun getBuriedPointUf(name: String) {
+        if (!BuildConfig.DEBUG) {
+            Firebase.analytics.logEvent(name, null)
+        } else {
+            KLog.d(logTagUf, "触发埋点----name=${name}")
+        }
+    }
+
+    /**
+     * 埋点
+     */
+    fun getBuriedPointUserTypeUf(name: String, value: String) {
+        if (!BuildConfig.DEBUG) {
+            Firebase.analytics.setUserProperty(name, value)
+        } else {
+            KLog.d(logTagUf, "触发埋点----name=${name}-----value=${value}")
+        }
+    }
+    /**
+     * 埋点连接时长
+     */
+    fun getBuriedPointConnectionTimeUf(name: String,time:Int) {
+        if (!BuildConfig.DEBUG) {
+            Firebase.analytics.logEvent(name, bundleOf("time" to time))
+        } else {
+            KLog.d(logTagUf, "触发埋点----name=${name}---time=${time}")
         }
     }
 }

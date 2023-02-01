@@ -26,8 +26,10 @@ object Constant {
     const val TIMER_UF_DATA = "timerUfData"
     //停止vpn连接
     const val STOP_VPN_CONNECTION = "stopVpnConnection"
-    // 最后时间
+    // 最后时间（00：00：00）
     const val LAST_TIME = "lastTime"
+    // 最后时间（秒）
+    const val LAST_TIME_SECOND = "lastTimeSecond"
     //服务器信息
     const val SERVER_UF_INFORMATION = "serverUfInformation"
     //连接状态
