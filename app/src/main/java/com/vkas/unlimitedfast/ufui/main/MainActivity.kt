@@ -70,6 +70,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     //当前执行连接操作
     private var performConnectionOperations: Boolean = false
 
+    //是否点击连接
+    private var clickToConnect: Boolean = false
+
     companion object {
         var stateListener: ((BaseService.State) -> Unit)? = null
     }
@@ -102,7 +105,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             .get(Constant.STOP_VPN_CONNECTION, Boolean::class.java)
             .observeForever {
                 if (state.canStop) {
-                    performConnectionOperations =false
+                    performConnectionOperations = false
                     Core.stopService()
                 }
             }
@@ -215,7 +218,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             if (binding.vpnState != 1) {
                 connect.launch(null)
             }
-            if(binding.vpnState == 0){
+            if (binding.vpnState == 0) {
                 UnLimitedUtils.getBuriedPointUf("unlimF_clickv")
             }
         }
@@ -225,11 +228,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 jumpToServerList()
             }
         }
-        fun openOrCloseMenu(){
+
+        fun openOrCloseMenu() {
             binding.sidebarShowsUf = binding.sidebarShowsUf != true
         }
+
         fun clickMain() {
-            KLog.e("TAG","binding.sidebarShowsUf===>${binding.sidebarShowsUf}")
+            KLog.e("TAG", "binding.sidebarShowsUf===>${binding.sidebarShowsUf}")
             if (binding.sidebarShowsUf == true) {
                 binding.sidebarShowsUf = false
             }
@@ -320,6 +325,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
      */
     private fun startVpn() {
         binding.vpnState = 1
+        clickToConnect =true
         changeOfVpnStatus()
         jobStartUf = lifecycleScope.launch {
             App.isAppOpenSameDayUf()
@@ -429,6 +435,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         KLog.e("TAG", "断开服务器")
         binding.vpnState = 0
         changeOfVpnStatus()
+        if (clickToConnect) {
+            UnLimitedUtils.getBuriedPointConnectionTimeUf(
+                "unlimF_cn",
+                mmkvUf.decodeInt(Constant.LAST_TIME_SECOND)
+            )
+        }
     }
 
     /**
@@ -443,7 +455,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 binding.txtTimerUf.text = getString(R.string._00_00_00)
                 binding.txtTimerUf.setTextColor(getColor(R.color.tv_time_dis))
                 UfTimerThread.endTiming()
-                UnLimitedUtils.getBuriedPointConnectionTimeUf("unlimF_cn", mmkvUf.decodeInt(Constant.LAST_TIME_SECOND))
                 binding.lavViewUf.pauseAnimation()
                 binding.lavViewUf.visibility = View.GONE
             }

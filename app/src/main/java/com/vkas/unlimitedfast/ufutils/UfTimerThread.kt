@@ -7,9 +7,6 @@ import java.text.DecimalFormat
 object UfTimerThread {
     private val job = Job()
     private val timerThread = CoroutineScope(job)
-    //连接倒计时
-    private val connectionCountdown = CoroutineScope(job)
-
     var skTime = 0
     var isStopThread =true
     /**
@@ -61,13 +58,5 @@ object UfTimerThread {
         val mm: String = DecimalFormat("00").format(timerData % 3600 / 60)
         val ss: String = DecimalFormat("00").format(timerData % 60)
         return "$hh:$mm:$ss"
-    }
-    /**
-     * 五分钟倒计时
-     */
-    fun fiveMinuteCountdown(){
-        connectionCountdown.launch {
-
-        }
     }
 }
