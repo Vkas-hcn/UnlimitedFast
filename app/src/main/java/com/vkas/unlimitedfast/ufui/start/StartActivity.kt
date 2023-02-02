@@ -2,6 +2,7 @@ package com.vkas.unlimitedfast.ufui.start
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -194,5 +195,8 @@ class StartActivity: BaseActivity<ActivityStartBinding, BaseViewModel>(),
     }
 
     override fun onHorizontalProgressFinished(view: View?) {
+    }
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return keyCode == KeyEvent.KEYCODE_BACK
     }
 }
