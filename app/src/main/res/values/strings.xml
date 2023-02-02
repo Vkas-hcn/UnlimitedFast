@@ -18,5 +18,7 @@
     <string name="the_connection_time">The connection time</string>
     <string name="connect">Connect</string>
     <string name="connecting">Connecting</string>
+    <string name="disconnecting">Disconnecting</string>
+
     <string name="disconnect">Disconnect</string>
 </resources>

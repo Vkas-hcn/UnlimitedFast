@@ -223,7 +223,7 @@ object UnLimitedUtils {
             "Italy" -> {
                 return R.mipmap.ic_italy
             }
-            "Koreasouth" -> {
+            "SouthKorea" -> {
                 return R.mipmap.ic_koreasouth
             }
             "Netherlands" -> {

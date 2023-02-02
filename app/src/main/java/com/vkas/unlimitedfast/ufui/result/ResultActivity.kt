@@ -72,14 +72,17 @@ fun liveEventBusReceive(){
             isConnectionUf = true
             binding.resultTitle.tvTitle.text = getString(R.string.vpn_disconnect)
             binding.tvConnected.text = getString(R.string.disconnection_succeed)
+            binding.linConnect.setBackgroundResource(R.mipmap.bg_result)
         }
 }
     override fun initData() {
         super.initData()
         if (isConnectionUf) {
             binding.tvConnected.text = getString(R.string.connection_succeed)
+            binding.linConnect.setBackgroundResource(R.mipmap.ic_result_success)
         } else {
             binding.tvConnected.text = getString(R.string.disconnection_succeed)
+            binding.linConnect.setBackgroundResource(R.mipmap.bg_result)
             binding.txtTimerUf.text = mmkvUf.decodeString(Constant.LAST_TIME, "").toString()
         }
         binding.imgCountry.setImageResource(UnLimitedUtils.getFlagThroughCountryUf(currentServerBeanUf.uf_country.toString()))

@@ -46,8 +46,8 @@ class UfLoadOpenAd {
 
     // openIndex
     var adIndexUf = 0
-
-
+    // 是否是第一遍轮训
+    private var isFirstRotation:Boolean=false
     /**
      * 广告加载前判断
      */
@@ -63,7 +63,7 @@ class UfLoadOpenAd {
             KLog.d(logTagUf, "open--广告加载中，不能再次加载")
             return
         }
-
+        isFirstRotation =false
         if (appAdDataUf == null) {
             isLoadingUf = true
             loadStartupPageAdvertisementUf(context, getAdServerDataUf())
@@ -131,6 +131,10 @@ class UfLoadOpenAd {
                         loadStartupPageAdvertisementUf(context, adData)
                     } else {
                         adIndexUf = 0
+                        if(!isFirstRotation){
+                            advertisementLoadingUf(context)
+                            isFirstRotation =true
+                        }
                     }
                     KLog.d(logTagUf, "open--开屏广告加载失败: " + loadAdError.message)
                 }

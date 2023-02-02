@@ -1,17 +1,17 @@
 {
-  "uf_show_num": 300,
+  "uf_show_num": 30,
   "uf_click_num": 5,
   "uf_open": [
     {
       "uf_type": "open",
       "uf_platform": "admob",
-      "uf_id": "ca-app-pub-3940256099942544/3419835294",
+      "uf_id": "ca-app-pub-3940256099942544/3419835294xx",
       "uf_weight": 1
     },
     {
       "uf_type": "open",
       "uf_platform": "admob",
-      "uf_id": "ca-app-pub-3940256099942544/8691691433",
+      "uf_id": "ca-app-pub-3940256099942544/8691691433xx",
       "uf_weight": 2
     },
     {

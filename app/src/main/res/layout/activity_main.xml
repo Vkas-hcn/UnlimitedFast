@@ -196,9 +196,9 @@
                 </LinearLayout>
 
                 <FrameLayout
-                    android:layout_width="336dp"
+                    android:layout_width="match_parent"
                     android:layout_height="152dp"
-                    android:layout_margin="16dp"
+                    android:layout_margin="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">

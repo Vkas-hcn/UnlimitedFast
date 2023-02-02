@@ -132,6 +132,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 jobRepeatClick = lifecycleScope.launch {
                     if (!repeatClick) {
                         KLog.e("state", "插屏关闭后跳转=${it}")
+                        UfLoadConnectAd.getInstance().advertisementLoadingUf(this@MainActivity)
                         connectOrDisconnectUf(it)
                         repeatClick = true
                     }
@@ -459,7 +460,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 binding.lavViewUf.visibility = View.GONE
             }
             1 -> {
-                binding.imgConnectionStatus.text = getString(R.string.connecting)
+                if(!performConnectionOperations){
+                    binding.imgConnectionStatus.text = getString(R.string.connecting)
+                }else{
+                    binding.imgConnectionStatus.text = getString(R.string.disconnecting)
+                }
                 binding.imgState.visibility = View.GONE
                 binding.lavViewUf.visibility = View.VISIBLE
                 binding.lavViewUf.playAnimation()
