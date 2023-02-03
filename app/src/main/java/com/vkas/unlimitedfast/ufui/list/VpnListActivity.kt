@@ -161,9 +161,9 @@ class VpnListActivity : BaseActivity<ActivityListUfBinding, VpnListViewModel>() 
             finish()
             return
         }
-        UfLoadBackAd.getInstance().advertisementLoadingUf(this)
-        UfLoadBackAd.getInstance()
-                .displayBackAdvertisementUf(this@VpnListActivity)
+        if(!UfLoadBackAd.getInstance().displayBackAdvertisementUf(this)){
+            finish()
+        }
     }
 
     /**
