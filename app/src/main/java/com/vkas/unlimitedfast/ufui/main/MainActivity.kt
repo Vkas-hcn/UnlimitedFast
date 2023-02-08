@@ -43,6 +43,7 @@ import com.vkas.unlimitedfast.ufutils.UfTimerThread
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.getFlagThroughCountryUf
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.isThresholdReached
+import com.xuexiang.xui.utils.Utils
 import com.xuexiang.xutil.net.JsonUtil
 import com.xuexiang.xutil.net.JsonUtil.toJson
 import com.xuexiang.xutil.net.NetworkUtils.isNetworkAvailable
@@ -330,8 +331,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         changeOfVpnStatus()
         jobStartUf = lifecycleScope.launch {
             App.isAppOpenSameDayUf()
-            if (isThresholdReached()) {
-                KLog.d(logTagUf, "广告达到上线")
+            if (isThresholdReached() || Utils.isNullOrEmpty(UfLoadConnectAd.getInstance().idUf)) {
+                KLog.d(logTagUf, "广告达到上线,或者无广告位")
                 delay(1500)
                 connectOrDisconnectUf(false)
                 return@launch

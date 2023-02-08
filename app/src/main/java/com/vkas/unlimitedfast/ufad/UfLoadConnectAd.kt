@@ -21,6 +21,9 @@ import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.getAdServerDataUf
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.recordNumberOfAdClickUf
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.recordNumberOfAdDisplaysUf
 import com.vkas.unlimitedfast.ufutils.UnLimitedUtils.takeSortedAdIDUf
+import com.xuexiang.xui.utils.Utils
+import com.xuexiang.xutil.net.JSONUtils
+import com.xuexiang.xutil.net.JsonUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -47,6 +50,9 @@ class UfLoadConnectAd {
 
     // openIndex
     var adIndexUf = 0
+
+    // 广告ID
+    var idUf = ""
 
     /**
      * 广告加载前判断
@@ -90,15 +96,15 @@ class UfLoadConnectAd {
      */
     private fun loadConnectAdvertisementUf(context: Context, adData: UfAdBean) {
         val adRequest = AdRequest.Builder().build()
-        val id = takeSortedAdIDUf(adIndexUf, adData.uf_connect)
+        idUf = takeSortedAdIDUf(adIndexUf, adData.uf_connect)
         KLog.d(
             logTagUf,
-            "connect--插屏广告id=$id;权重=${adData.uf_connect.getOrNull(adIndexUf)?.uf_weight}"
+            "connect--插屏广告id=$idUf;权重=${adData.uf_connect.getOrNull(adIndexUf)?.uf_weight}"
         )
 
         InterstitialAd.load(
             context,
-            id,
+            idUf,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -175,6 +181,7 @@ class UfLoadConnectAd {
             KLog.d(logTagUf, "connect--插屏广告加载中。。。")
             return false
         }
+
         if (whetherToShowUf || activity.lifecycle.currentState != Lifecycle.State.RESUMED) {
             KLog.d(logTagUf, "connect--前一个插屏广告展示中或者生命周期不对")
             return false
